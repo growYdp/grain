@@ -1,0 +1,41 @@
+.login-container {
+  height: @height-full-screen;
+  background-color: @primary;
+
+  .login-content {
+    background-color: @white;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    border-radius: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -350px;
+    top: 50%;
+    margin-top: -200px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 2px #66b1ff;
+
+    .login-content-left {
+      flex: 1;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .login-content-right {
+      flex: 1;
+      flex-shrink: 0;
+      padding: 20px;
+
+      .login-form {
+        background-color: @white;
+        margin-top: 100px;
+        padding: 20px 0 0
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@mixin common-flex($horizonal: flex-start, $vertical: stretch, $direction: row) {
+  display: flex;
+  justify-content: $horizonal;
+  flex-direction: $direction;
+  align-items: $vertical;
+}
+
+@mixin common-background($url) {
+  background: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+@mixin common-flex-item($flex: 1, $shrink: 0) {
+  flex: $flex;
+  flex-shrink: $shrink;
+}
