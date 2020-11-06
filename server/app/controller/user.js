@@ -1,10 +1,14 @@
 const Controller = require('egg').Controller
 
-class UserController extends Controller {
-  login() {
-    const { ctx } = this
-    ctx.body = true
+class UsersController extends Controller {
+  async index() {
+
   }
+
+  async create() {
+    this.ctx.body = await this.ctx.service.user.create(this.ctx.request.body)
+  }
+  login() {}
 }
 
-module.exports = UserController
+module.exports = UsersController

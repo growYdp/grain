@@ -1,6 +1,6 @@
 # server
 
-2020 grain backend
+
 
 ## QuickStart
 
