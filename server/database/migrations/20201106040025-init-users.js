@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 12:00:25
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 10:51:14
+ * @LastEditTime: 2020-11-09 17:07:20
  */
 'use strict';
 
@@ -22,7 +22,8 @@ module.exports = {
       username: {
         type: STRING,
         allowNull: false,
-        comment: '用户名'
+        comment: '用户名',
+        unique: true
       },
       password: {
         type: STRING,
@@ -31,7 +32,8 @@ module.exports = {
       nickname: {
         type: STRING,
         allowNull: false,
-        comment: '用户昵称'
+        comment: '用户昵称',
+        unique: true
       },
       gender: {
         type: INTEGER(10),

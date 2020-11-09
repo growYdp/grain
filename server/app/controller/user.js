@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 11:52:24
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 11:57:25
+ * @LastEditTime: 2020-11-09 17:49:23
  */
 /*
  * @Descripttion: 
@@ -18,6 +18,8 @@ class UsersController extends Controller {
   async index() {
     const { ctx } = this
     const { query } = ctx.request
+    const validateResult = await ctx.validate('user.index', query)
+    if (!validateResult) return
     ctx.body = await ctx.service.user.index(query)
   }
 

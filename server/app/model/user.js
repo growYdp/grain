@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 17:21:07
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 15:27:33
+ * @LastEditTime: 2020-11-09 16:59:14
  */
 'use strict';
 
@@ -73,7 +73,9 @@ module.exports = app => {
       type: DATE
     }
   }, {
-    timestamps: false
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
 
   return User;

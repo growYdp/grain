@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-07 09:50:18
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 11:33:30
+ * @LastEditTime: 2020-11-09 17:04:40
  */
 module.exports = {
   VALIDATEUSERNAMENULL: "用户名不能为空",
@@ -11,5 +11,6 @@ module.exports = {
   VALIDATENICKNAMENULL: "昵称不能为空",
 
   MYSQLUSERNAME: "用户名不存在",
+  MYSQLUSERNAMEIN: '用户名已存在',
   MYSQLPASSWORD: "密码不正确"
 }

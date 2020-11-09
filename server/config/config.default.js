@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 11:35:44
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 14:55:38
+ * @LastEditTime: 2020-11-09 17:26:01
  */
 /* eslint valid-jsdoc: "off" */
 
@@ -36,7 +36,7 @@ module.exports = appInfo => {
     secret: "!-qsdgt518*/"//自定义 token 的加密条件字符串
   }
 
-  config.Limit = 10
+  config.Limit = 5
 
   config.validatePlus = {
     resolveError(ctx, errors) {

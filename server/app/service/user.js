@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 17:23:00
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 15:26:45
+ * @LastEditTime: 2020-11-09 17:56:03
  */
 const Service = require('egg').Service
 const { SuccessResponse, ErrorResponse } = require('../utils/response')
@@ -11,7 +11,9 @@ const { encode, decode } = require('../utils/encryption')
 const constant = require('../utils/constant')
 
 class UserService extends Service {
-  async index({ page = 1, limit = this.app.config.Limit, ...where }) {
+  async index({ page = 1, limit=this.app.config.Limit, ...where }) {
+    page = Number(page)
+    limit = Number(limit)
     const { ctx } = this
     const tempQuery = {
       attributes: {exclude: ['password']},
@@ -19,9 +21,17 @@ class UserService extends Service {
       offset: page * limit - limit,
       where
     }
-    const lists = await ctx.model.User.findAndCountAll(tempQuery)
-    if (lists) {
-      return new SuccessResponse(lists)
+    try {
+      const lists = await ctx.model.User.findAndCountAll(tempQuery)
+      return new SuccessResponse({
+        data: lists.rows,
+        current_page: page,
+        per_page: limit,
+        total: lists.count,
+        last_page: Math.ceil(lists.count / limit)
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -38,7 +48,7 @@ class UserService extends Service {
       await ctx.model.User.create(form)
       return new SuccessResponse()
     } catch (error) {
-      return new ErrorResponse({message: error.name})
+      return new ErrorResponse({message: error.errors[0].message})
     }
   }
 
@@ -51,7 +61,7 @@ class UserService extends Service {
   async login(form) {
     const { ctx } = this
     // 1. search user
-    let user = await ctx.model.User.findOne({ where: { 'username': form.username } })
+    let user = await single(form)
     if (user === null) {
       return new ErrorResponse({message: constant.MYSQLUSERNAME})
     }
@@ -63,6 +73,11 @@ class UserService extends Service {
 
     const token = ctx.app.jwt.sign({id: res.id}, this.app.config.jwt.secret)
     console.log(token)
+  }
+
+  async single(form) {
+    const { ctx } = this
+    return await ctx.model.User.findOne({ where: { 'username': form.username } })
   }
 }
 
