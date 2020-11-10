@@ -1,3 +1,10 @@
+/*
+ * @Descripttion: 
+ * @Author: growydp
+ * @Date: 2020-11-05 15:53:45
+ * @LastEditors: growydp
+ * @LastEditTime: 2020-11-10 16:21:59
+ */
 import React from 'react'
 import './index.less'
 import { Button, Form, Input } from 'antd'
@@ -8,9 +15,9 @@ import { userLogin } from 'apis/user'
 
 function Login() {
   const onFinish = values => {
-    console.log(values)
     userLogin(values).then(response => {
-      console.log(response)
+      const { token } = response.data
+      
     })
   }
 

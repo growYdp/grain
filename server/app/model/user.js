@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 17:21:07
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-09 16:59:14
+ * @LastEditTime: 2020-11-10 17:34:58
  */
 'use strict';
 
@@ -75,7 +75,13 @@ module.exports = app => {
   }, {
     timestamps: true,
     createdAt: 'created_at',
-    updatedAt: 'updated_at'
+    updatedAt: 'updated_at',
+    defaultScope: {
+      attributes: {
+        // 排除密码，不返回密码
+        exclude: ['password']
+      }
+    }
   });
 
   return User;

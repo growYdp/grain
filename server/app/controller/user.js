@@ -3,14 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 11:52:24
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-09 17:49:23
- */
-/*
- * @Descripttion: 
- * @Author: growydp
- * @Date: 2020-11-06 11:52:24
- * @LastEditors: growydp
- * @LastEditTime: 2020-11-07 09:55:23
+ * @LastEditTime: 2020-11-10 17:29:16
  */
 const Controller = require('egg').Controller
 
@@ -29,13 +22,6 @@ class UsersController extends Controller {
     const validateResult = await ctx.validate('user.create', body)
     if (!validateResult) return
     ctx.body = await ctx.service.user.create(body)
-  }
-  async login() {
-    const { ctx } = this
-    const { body } = ctx.request
-    const validateResult = await ctx.validate('user.login', body)
-    if (!validateResult) return
-    ctx.body = await ctx.service.user.login(body)
   }
 }
 
