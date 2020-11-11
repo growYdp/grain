@@ -3,14 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 17:23:00
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-10 17:44:24
- */
-/*
- * @Descripttion: 
- * @Author: growydp
- * @Date: 2020-11-06 17:23:00
- * @LastEditors: growydp
- * @LastEditTime: 2020-11-09 17:56:03
+ * @LastEditTime: 2020-11-11 11:40:46
  */
 const Service = require('egg').Service
 const { SuccessResponse, ErrorResponse } = require('../utils/response')
@@ -36,16 +29,33 @@ class AdminService extends Service {
     if (!res) {
       return new ErrorResponse({message: constant.MYSQLPASSWORD})
     }
+
+    // 3. make token
     const token = ctx.app.jwt.sign({id: user.id}, app.config.jwt.secret)
+
+    // 4. save token
+    await user.update({token})
+
     return new SuccessResponse({ token })
   }
 
+  /**
+   * @name: 用户信息
+   * @msg: 根据token获取用户信息
+   * @param {*}
+   * @return {*}
+   */
   async info() {
-    const { ctx, app } = this
-    const id = ctx.app.jwt.verify(ctx.request.header.authorization, app.config.jwt.secret).id
-    return new SuccessResponse(await ctx.model.User.findByPk(id, { attributes: { exclude: ['password' ]} }))
+    const { ctx } = this
+    return new SuccessResponse(ctx.uinfo)
   }
 
+  /**
+   * @name: 单个用户
+   * @msg: 获取单个用户信息
+   * @param {*}
+   * @return {*}
+   */
   async single(form) {
     const { ctx } = this
     return await ctx.model.User.findOne({ where: { 'username': form.username } })

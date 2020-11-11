@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 11:35:44
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-10 17:29:55
+ * @LastEditTime: 2020-11-11 11:37:50
  */
 'use strict';
 
@@ -17,5 +17,5 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.resources('/api/user', jwt, controller.user)
   router.post('/api/login', controller.admin.login)
-  router.get('/api/info', controller.admin.info)
+  router.get('/api/info', jwt, controller.admin.info)
 };

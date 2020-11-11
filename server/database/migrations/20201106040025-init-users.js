@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 12:00:25
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-09 17:07:20
+ * @LastEditTime: 2020-11-11 09:39:34
  */
 'use strict';
 
@@ -62,6 +62,10 @@ module.exports = {
       description: {
         type: STRING,
         comment: '用户介绍'
+      },
+      token: {
+        type: STRING,
+        comment: '用户token'
       },
       is_admin: {
         type: INTEGER(10),

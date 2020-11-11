@@ -3,21 +3,24 @@
  * @Author: growydp
  * @Date: 2020-11-05 15:53:45
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-10 16:21:59
+ * @LastEditTime: 2020-11-11 17:05:41
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.less'
 import { Button, Form, Input } from 'antd'
 import { UserOutlined, EyeOutlined } from '@ant-design/icons';
 import ContentImg from 'assets/images/team.png'
 import { BTNLOGIN, TIPUSERNAME, TIPPASSWORD } from 'utils/constants'
-import { userLogin } from 'apis/user'
+import { userLogin, userInfo } from 'apis/admin'
+import { setToken, getToken } from 'utils/auth'
 
-function Login() {
+function Login(props) {
   const onFinish = values => {
     userLogin(values).then(response => {
       const { token } = response.data
-      
+      setToken(token)
+      props.history.replace('/')
+      // getUinfo()
     })
   }
 
@@ -25,6 +28,12 @@ function Login() {
     console.log(values)
     console.log(errorFields)
     console.log(outOfDate)
+  }
+
+  const getUinfo = () => {
+    userInfo().then(response => {
+      
+    })
   }
 
   return (

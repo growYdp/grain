@@ -3,7 +3,7 @@
  * @Author: growydp
  * @Date: 2020-11-06 17:23:00
  * @LastEditors: growydp
- * @LastEditTime: 2020-11-10 17:34:00
+ * @LastEditTime: 2020-11-11 11:51:00
  */
 const Service = require('egg').Service
 const { SuccessResponse, ErrorResponse } = require('../utils/response')
@@ -19,6 +19,7 @@ class UserService extends Service {
     })
     const { ctx } = this
     const tempQuery = {
+      attributes: { exclude: ['password', 'token'] },
       l,
       offset: p * l - l,
       where
