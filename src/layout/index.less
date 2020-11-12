@@ -1,25 +1,32 @@
 .layout-container {
-  height: 100vh
-}
+  height: 100vh;
 
-.trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
+  .layout-menu-logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 16px;
+  }
 
-.trigger:hover {
-  color: #1890ff;
-}
+  .layout-right {
+    .layout-header {
+      background-color: @white;
+      padding: 0;
 
-.logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 16px;
-}
+      .layout-header-trigger {
+        font-size: 18px;
+        line-height: 64px;
+        padding: 0 24px;
+        cursor: pointer;
+        transition: color 0.3s;
 
-.site-layout .site-layout-background {
-  background: #fff;
+        &:hover {
+          color: #1890ff;
+        }
+      }
+    }
+
+    .layout-wrapper {
+      background-color: @white;
+    }
+  }
 }
